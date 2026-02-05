@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Destination S3 Bucket for replication (us-east-1)
+
+Parameters:
+  DestinationBucketName:
+    Type: String
+    Description: Name of the destination bucket
+    Default: harmeet-destination-us-east-1-20260204
+
+Resources:
+  DestinationBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref DestinationBucketName
+      VersioningConfiguration:
+        Status: Enabled
+
+Outputs:
+  DestinationBucketArn:
+    Description: ARN of the destination bucket
+    Value: !GetAtt DestinationBucket.Arn
+  DestinationBucketName:
+    Description: Name of the destination bucket
+    Value: !Ref DestinationBucket

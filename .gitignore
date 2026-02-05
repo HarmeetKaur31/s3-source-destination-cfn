@@ -1,0 +1,33 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python / scripting caches (if using Python scripts)
+__pycache__/
+*.pyc
+*.pyo
+
+# Node / JS dependencies (if using JS)
+node_modules/
+
+# CloudFormation packaging / temp files
+*.zip
+packaged-template.yaml
+
+# Terraform state files (if you use Terraform too)
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# AWS CLI temporary files
+.aws-sam/
+.aws-s3-cache/
+
+# Logs
+*.log
+
+# IDE / editor settings
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project

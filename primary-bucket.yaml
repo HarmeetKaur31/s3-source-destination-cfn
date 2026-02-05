@@ -1,0 +1,38 @@
+Description: Primary S3 Bucket with Cross-Region Replication (ca-central-1)
+
+Parameters:
+  PrimaryBucketName:
+    Type: String
+    Default: chd-unq-feb123
+
+  ReplicationRoleArn:
+    Type: String
+    Description: ARN of the IAM role used for S3 replication
+
+  DestinationBucketArn:
+    Type: String
+    Description: ARN of the destination S3 bucket
+
+Resources:
+  PrimaryBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref PrimaryBucketName
+      VersioningConfiguration:
+        Status: Enabled
+      ReplicationConfiguration:
+        Role: !Ref ReplicationRoleArn
+        Rules:
+          - Id: ReplicationRule
+            Status: Enabled
+            Filter: {}
+            Priority: 1
+            DeleteMarkerReplication:
+              Status: Disabled
+            Destination:
+              Bucket: !Ref DestinationBucketArn
+              StorageClass: STANDARD
+
+Outputs:
+  PrimaryBucketName:
+    Value: !Ref PrimaryBucketName
